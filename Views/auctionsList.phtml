@@ -1,0 +1,31 @@
+<?php require('template/header.phtml') ; ?>
+    <h1 id="header"> Live Auctions</h1>
+ <br>
+    <!--Card that shows each auction-->
+  <div class="row row-cols-2 row-cols-md-3 g-4">
+            <?php
+                   foreach ($view->auctionItemDataSet as $auctionItemData) {
+                echo
+                    ' <div class="card mb-3" style="max-width: 1000px; ">
+            <div class="row g-0">
+                <div class="col-md-4">
+                   <a href="auction.php?id='. $auctionItemData->getAuctionID().'"><img id ="" src="AuctionImages/' . 'flower' . $auctionItemData->getAuctionID() . '-1' . '.jpg' . ' " alt="no picture" />
+                 </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">'.
+                    '<a href="auction.php?id='. $auctionItemData->getAuctionID().'">'. $auctionItemData->getAuctionName().'</a>'.
+                    '</h5><p class="card-text">'. $auctionItemData->getAuctionAddress() .'</p>  <h5 class="card-text"><small class="text-muted">'.
+                    'Start Date: '.$auctionItemData->getAuctionStartDate() .'</small></h5>
+                 </div>
+                </div>
+            </div>
+        </div>
+         
+         ';
+
+             }?>
+        </div>
+    <!--End of card-->
+
+<?php require('template/footer.phtml') ?>

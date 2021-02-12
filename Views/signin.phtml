@@ -1,0 +1,42 @@
+<?php require('template/header.phtml') ;
+session_start();
+?>
+
+<!--Custom styles for this page-->
+    <link href="css/signin.css" rel="stylesheet">
+
+<div class="container" id="SignInPanel" >
+    <div class="row" style="justify-content: center">
+        <div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-4 mt-5"  style="padding-top: 100px">
+            <form action="signin_check.php" method="post">
+                <div class="panel panel-success">
+                    <h1 class="panel-heading text-center" style=" font-family: 'Montserrat', sans-serif;">
+                        Sign in
+                    </h1>
+<!--                      Gives feedback when fields have been left incomplete or are wrong-->
+                    <?php if (isset($_GET['error'])) { ?>
+                        <p class="error"><?php echo $_GET['error']; ?></p>
+                    <?php } ?>
+
+                    <div class="panel-body mt-3" >
+<!--                        Email Address field-->
+                        <div class="form-group">
+                            <input type="text" name="email" class="form-control" placeholder="Email address" >
+                        </div>
+<!--                        Password field-->
+                        <div class="form-group mb-4">
+                            <input type="password" name="passTxt" class="form-control" placeholder="Password" >
+                        </div>
+<!--                            Sign in button-->
+                        <div class="form-group">
+                            <button type="submit" name="btnSubmit" class="form-control btn btn-success" value="Sign in" id="SignInBtn" >Sign in</button>
+                        </div>
+                        <a href="signup.php"><p class="text-center">New user? Click to Sign up</p></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<?php require('template/footer.phtml') ?>

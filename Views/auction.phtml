@@ -1,0 +1,36 @@
+
+<?php require('template/header.phtml') ; ?>
+<h1 id="header"> Auction <?php echo $view->id; ?> Lots</h1>
+ <br>
+<!--Card that shows lots of the auction-->
+ <div class="row row-cols-3 row-cols-md-2 g-4">
+        <?php
+        foreach ($view->auctionItemDataSet as $auctionItemData) {
+            echo
+                ' <div class="card mb-3" style="max-width: 1000px; ">
+                <div class="row g-0">
+                <div class="col-md-4">
+                  <a href="lot.php?id='.$auctionItemData->getLotID().'"><img id="lot" src="AuctionImages/'.'flower' . $auctionItemData->getImageID() . '-1' . '.jpg' .' " alt="no picture" /></a>
+                 </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><a id="lot_no" href="lot.php?id='.$auctionItemData->getLotID().'">Lot '. $auctionItemData->getLotID() .'</a></br>'.
+                '<a href="lot.php?id='.$auctionItemData->getLotID().'">'.  $auctionItemData->getItemTitle().'</a>'.
+                '</h5><p class="card-text">'. $auctionItemData->getItemDesc().'</p>  <h5 class="card-text"><small class="text-muted">'.
+                'Starting Bid: '.$auctionItemData->getStartBidAmount()  .' GBP <br> Estimate: '.$auctionItemData->getTypicalPrice().' GBP</small></h5> <br> <p id="LiveTag">	🔴 Live</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+         
+         ';
+
+
+        } ?>
+ </div>
+<!--End of card-->
+
+
+<?php require('template/footer.phtml') ?>
+
+

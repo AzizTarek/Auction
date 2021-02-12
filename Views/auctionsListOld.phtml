@@ -1,0 +1,25 @@
+<?php require('template/header.phtml') ; ?>
+<h1 id="header"> Live Auctions</h1>
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <br>
+    <table class="table" id="auctions">
+        <thead>
+        <tr><th>Auction Name </th><th>Auction Address</th><th>Auction StartDate</th></tr>
+
+
+        </thead>
+        <tbody>
+        <?php
+        foreach ($view->auctionItemDataSet as $auctionItemData) {
+
+            echo '<tr> <td>' .'<a href="auction.php?id='. $auctionItemData->getAuctionID().'">'. $auctionItemData->getAuctionName().'</a>'.
+                '<img id ="auction" src="AuctionImages/'.'flower' . $auctionItemData->getAuctionID() . '-1' . '.jpg' .' " alt="no picture" />'.
+
+                  '</td> <td>' . $auctionItemData->getAuctionAddress() . '</td> <td>' . $auctionItemData->getAuctionStartDate() .'</td> </tr>';
+        } ?>
+        </tbody>
+    </table>
+
+</form>
+
+<?php require('template/footer.phtml') ?>

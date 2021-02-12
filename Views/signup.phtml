@@ -1,0 +1,74 @@
+<?php require('template/header.phtml') ; ?>
+
+<!--Custom styles for this page-->
+<link href="css/signup.css" rel="stylesheet">
+<!--Sign up form-->
+<div class="container" id="SignUpPanel" >
+    <div class="row" style="justify-content: center">
+        <div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-4 mt-5"  style="padding-top: 100px">
+            <form action="signup_check.php" method="post">
+                <div class="panel panel-success">
+<!--                    Sign up header-->
+                    <h1 class="panel-heading text-center" style=" font-family: 'Montserrat', sans-serif;">
+                        Sign up
+                    </h1>
+<!--                    Gives feedback when fields have been left incomplete or have been completed-->
+                    <?php if (isset($_GET['error'])) { ?>
+                        <p class="error"><?php echo $_GET['error']; ?></p>
+                    <?php } ?>
+
+                    <?php if (isset($_GET['success'])) { ?>
+                        <p class="success"><?php echo $_GET['success']; ?></p>
+                    <?php } ?>
+                    <div class="panel-body mt-3" >
+<!--                        A row with 2 fields first name and last name-->
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 mb-4">
+                                <input type="text" name="firstname"  class="form-control input-lg" placeholder="First Name"  />
+                            </div>
+                            <div class="col-xs-6 col-md-6 mb-4">
+                                <input type="text" name="lastname" class="form-control input-lg" placeholder="Last Name"  />
+                            </div>
+                        </div>
+<!--                        A row with 2 fields username and user type-->
+                        <div class="row">
+                            <div class="col-xs-6 col-md-7 mb-4">
+                                <input type="text" name="username" class="form-control input-lg" placeholder="Username"  />
+                            </div>
+                                 <select class="form-select col-xs-6 col-md-5 mb-4" aria-label="Default select example" name="user_type">
+                                    <option selected>User type</option>
+                                    <option value="0">User</option>
+                                    <option value="1">Admin</option>
+                                 </select>
+
+                        </div>
+<!--                        Email address field-->
+                        <div class="form-group">
+                            <input type="text" name="emailTxt" class="form-control" placeholder="Email address" >
+                        </div>
+<!--                        Password and confirm password-->
+                        <div class="form-group mb-4">
+                            <input type="password" name="passTxt" class="form-control" placeholder="Password" >
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="password" name="confirm_passTxt" class="form-control" placeholder="Confirm Password" >
+                        </div>
+<!--                        Sign up button-->
+                        <div class="form-group">
+                            <button type="submit" name="btnSubmit" class="form-control btn btn-success" value="Sign up" id="SignUpBtn" >Sign up</button>
+                        </div>
+                        <a href="signin.php"><p class="text-center">Already a user? Click to Sign in</p></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<?php require('template/footer.phtml') ; ?>
+
+
+
+
+

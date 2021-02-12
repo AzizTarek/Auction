@@ -1,0 +1,93 @@
+<?php require('template/header.phtml') ;
+
+?>
+
+<h1 id="header"> LOT
+    <?php echo $view->id; ?>
+</h1>
+<br>
+
+    <div class="card mb-3" style="max-width: 3000px;">
+        <div class="row g-0">
+            <div class="col-md-3">
+<!--                       Picture slideshow-->
+                    <div id="demo" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ul class="carousel-indicators">
+                            <li data-target="#demo" data-slide-to="0" class="active"></li>
+                            <li data-target="#demo" data-slide-to="1"></li>
+                            <li data-target="#demo" data-slide-to="2"></li>
+                        </ul>
+
+                        <!-- The slideshow -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="AuctionImages/<?php echo $view->imageDataSet->getImage1() ?>" alt="1st image ">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="AuctionImages/<?php echo $view->imageDataSet->getImage2() ?>" alt="2nd image ">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="AuctionImages/<?php echo $view->imageDataSet->getImage3() ?>" alt="3rd image ">
+                            </div>
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
+
+                    </div>
+<!--                    End of picture slideshow-->
+            </div>
+
+<!--            Card with all the lot information including the form to place a bid-->
+            <div class="col-md-9">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $view->lotDataSet->getItemTitle()?></h5>
+                    <p class="card-text"><?php echo $view->lotDataSet->getItemDesc()?> </p>
+                    <p class="card-text text-muted">Estimated price: <?php echo $view->lotDataSet->getTypicalPrice()?> GBP</p>
+                    <p><hr class="paragraph-divider"></p>
+                     <!--  <p class="card-text text-muted">Auctioneer: </p>-->
+
+
+                    <!-- Card that uses a form to place a bid -->
+                    <div class="card text-center ">
+                        <div class="card-header" id="BidReminder">
+                            ⭕ REMINDER: You will only pay the minimum required to win the item and never more than your max bid
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Starting Price: <?php echo $view->lotDataSet->getStartBidAmount()?> GBP</h5>
+                            <p class="card-text text-muted">Additional fees might apply</p>
+
+<!--                            Bidding form-->
+                           <form action="bid.php?startingBid=<?php echo $view->lotDataSet->getStartBidAmount()?>&lotID=<?php echo $view->id?>" class="row g-2" style="justify-content: center" method="post">
+
+                                <div class="col-auto">
+                                    <input type="number" class="form-control" placeholder="Enter your best bid" name="bidAmount">
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary mb-3">Bid</button>
+                                </div>
+                               <?php if (isset($_GET['bid_error'])) { ?>
+                                   <p class="error"><?php echo $_GET['bid_error']; ?></p>
+                               <?php } ?>
+
+                           </form>
+<!--                            End of form-->
+                        </div>
+                        <div class="card-footer text-muted" id="BidReminder">
+                          Bidding End Date: <?php echo $view->lotDataSet->getBidEndDate()?>
+                        </div>
+                    </div>
+                    <!-- End of card-->
+                </div>
+            </div>
+<!--            End of card-->
+        </div>
+    </div>
+
+<?php require('template/footer.phtml') ?>

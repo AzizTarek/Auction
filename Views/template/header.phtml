@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Auction" content="Auction website made for bidding on items">
+    <meta name="Aziz Alexandros Tarek" content="">
+    <!--page icon-->
+    <link rel="shortcut icon" type="image/png" href="images/auction.jpg">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/my-styles.css" rel="stylesheet">
+
+    <title>Auction<?php echo $view->pageTitle; ?></title>
+</head>
+
+<body>
+ <div class="container">
+     <!--Navbar-->
+     <nav class="navbar navbar-expand-lg navbar-light fixed-top " style="background-color:#FFEC80;" >
+         <div class="container-fluid">
+<!--             Brand-->
+             <a class="navbar-brand" href="index.php">
+                 <img src="images/auction.jpg" alt="Auction website brand" />
+             </a>
+<!--             Button for collapsable menu-->
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="navbar-toggler-icon"></span>
+             </button>
+<!--              Dropdown menu-->
+             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                 <ul class="navbar-nav mr-auto">
+                     <li class="nav-item dropdown active ">
+
+                         <button class="btn btn-primary dropdown-toggle" id="navbarDropdown" type="button" data-toggle="dropdown">Auctions
+                             <span class="caret"></span></button>
+                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                             <li><a class="dropdown-item" href="auctionsList.php">Live Auctions</a></li>
+                         </ul>
+
+
+                     </li>
+<!--                     Home button-->
+                     <li class="nav-item active ">
+                         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                     </li>
+<!--                     Signin button-->
+                     <li class="nav-item active">
+                         <a class="nav-link" href="signin.php">Sign In</a>
+                     </li>
+<!--                     Bids button-->
+                     <li class="nav-item active">
+                         <a class="nav-link" href="loggedIn.php">Bids</a>
+                     </li>
+
+
+
+
+                 </ul>
+<!--                 Throw error message if no search  results were found-->
+                 <?php if (isset($_GET['search_error'])) { ?>
+                     <p class="errorNav"><?php echo $_GET['search_error']; ?></p>
+                 <?php } ?>
+<!--                 Search box 2 radio buttons-->
+                 <form class="form-inline my-3 my-lg-0" method="post" action="search.php">
+
+                        <input type="radio" class="btn-check " name="btnradio" id="btnradio1" value="1" >
+                        <label class="btn btn-dark" for="btnradio1">Search Auction</label>
+                        <input type="radio" class="btn-check ml-3" name="btnradio" id="btnradio2" value="2" >
+                        <label class="btn btn-info" for="btnradio2">Search Lot</label>
+
+                     <input class="form-control mr-sm-2 ml-4" type="number" placeholder="Search by its no" aria-label="Search" name="searchTxt">
+                         <button class="btn btn-outline-success my-2 my-sm-0" name="submitBtn" type="submit"><img id="search" src="images/search.png"/></button>
+
+                 </form>
+             </div>
+         </div>
+     </nav>
+     <!--end of navbar-->
+
+
+
+ </div>
+
+</body>
+
+</html>
+
+
+<!--searching-->

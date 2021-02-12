@@ -1,0 +1,81 @@
+<?php
+// Bids page , shows the user's bids
+session_start();
+
+    if (isset($_SESSION['userID']) && isset($_SESSION['user_name'])&& isset($_SESSION['user_username'])&& isset($_SESSION['user_email'])&& isset($_SESSION['user_type']) ) {
+        require('template/header.phtml') ;
+        //Custom styles for this page
+        echo '<link href="css/loggedIn.css" rel="stylesheet">';
+                echo '<h1 style="font-family: Dancing Script, cursive;" id="header" >Welcome back '. $_SESSION['user_name'].' </h1>'; //Header
+
+                  echo ' <!--  Logout button-->
+                    <a href="logout.php" ><button class="btn btn-danger" id="logOutButton"> Logout</button></a>';
+
+                      //        Redirect when clicked  to upload auction if user is admin
+                    if($_SESSION['user_type']==1){
+                        echo ' <div class="btn-group" >
+                                  <a href="upload.php?Upload=Auction" ><button class="btn btn-info" id="uploadBtn">Upload Auction </button></a>
+                                      <a href="upload.php?Upload=Lot&User='.$_SESSION['user_type'].'" ><button class="btn btn-info" id="uploadBtn">Upload Lot </button></a>
+                                </div>
+                              ';
+                    }
+            require_once('Models/BidDataSet.php');
+            $bidDataSet = new BidDataSet();
+            $view->bidDataSet = $bidDataSet->fetchAllBids($_SESSION['userID']);
+            $bidsExist = false; //Indicates if any bids exist
+            foreach ($view->bidDataSet as $bidData)
+            {  //Shows each bid in a boostrap card
+                        $bidStatus ='';
+                        //Check if bid is live or not
+                        if($bidData->getBidStatus()==0)
+                            $bidStatus= ' Live ';
+                        else
+                            $bidStatus = ' Bidding has ended ';
+                         echo
+                             '
+                                 <div class="card mb-4 ml-5" style="max-width: 1000px; ">
+                                       
+                                <div class="row g-0">
+                            
+                                  <div class="col-md-7">
+                                  <!--Delete button-->
+                        <a href="deleteBid.php?bidID=' . $bidData->getBidID() . '">'  .'<button type="button" class="btn-danger" name="delete" >X</button></a>
+                                    <div class="card-body ml-5">
+                                    
+                                        <h5 class="card-title"><a id="lot_no" href="lot.php?id=' . $bidData->getLotID() . '">Lot ' . $bidData->getLotID() . '</a></br>' .
+                             '<a href="lot.php?id=' . $bidData->getLotID() . '">' . $bidData->getBidCreationDate() . '</a>' .
+                             '</h5><p class="card-text">' .$bidStatus. '</p>  <h5 class="card-text"><small class="text-muted">' .
+                             'Bid Amount: ' . $bidData->getBidAmount() . ' GBP</small></h5>
+                                  </div>
+                                </div>
+                                
+                              </div>
+                            </div>
+                           
+                         
+                         ';
+                         $bidsExist=true;
+                 }
+                  if(!$bidsExist) //Check if a any bids exist for the user and show message if there are none
+                       echo '<h4 class="text-center mt-5"> You have not placed any bids </h4>';
+
+    ?>
+<!-- User information-->
+    <h4 class="text-muted text-center"  ><br>Your id is: <?php echo $_SESSION['userID']; ?> .Your username is: <?php echo $_SESSION['user_username']; ?>
+       . Your email is: <?php echo $_SESSION['user_email']; ?>. Your are a<?php if($_SESSION['user_type']==1 )echo 'n Admin'; else echo 'User';   ?>
+
+    </h4>
+
+<?php
+//    Show information of the most recent bid if he made a bid during his session)
+        if(isset($_SESSION['bid_amount'])&& isset($_SESSION['bid_creation_date'])&& isset($_SESSION['lotID']))
+             echo   '<h5 class="text-center mb-5"> <br>Your most recent bid is '. $_SESSION['bid_amount'] .' pounds  at '. $_SESSION['bid_creation_date']. ' for Lot '.  $_SESSION['lotID'] .'</h5>';
+
+    }
+    else{
+    header("Location: signin.php"); //Redirect to sign in page if user is not signed in
+    exit();
+        }
+?>
+<?php require('template/footer.phtml') ;
+?>

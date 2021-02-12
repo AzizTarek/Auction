@@ -1,0 +1,105 @@
+<?php require('template/header.phtml') ;
+ini_set('display_errors', '1'); // show errors in browser
+?>
+
+<!--Custom styles for this page-->
+<link href="css/signup.css" rel="stylesheet">
+<!-- form-->
+<div class="container" id="SignUpPanel" >
+    <div class="row" style="justify-content: center">
+        <div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-4 mt-5"  style="padding-top: 100px">
+            <form action="upload_check.php" method="post">
+                <div class="panel panel-success">
+
+                    <!--                    Sign up header-->
+                    <h1 class="panel-heading text-center" style=" font-family: 'Montserrat', sans-serif;">
+                        Upload   <?php echo $view->uploadType?>
+                    </h1>
+                    <!--                    Gives feedback when fields have been left incomplete or have been completed-->
+                    <?php if (isset($_GET['error'])) { ?>
+                        <p class="error"><?php echo $_GET['error']; ?></p>
+                    <?php } ?>
+
+                    <?php if (isset($_GET['success'])) { ?>
+                        <p class="success"><?php echo $_GET['success']; ?></p>
+                    <?php } ?>
+
+                    <?php if ($view->uploadType =='Auction'){?>
+
+<!--                    upload Auction-->
+                    <div class="panel-body mt-3" >
+<!--                        Auction name and address-->
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 mb-4">
+                                <input type="text" name="auction_name"  class="form-control input-lg" placeholder="Name"  />
+                            </div>
+                            <div class="col-xs-6 col-md-6 mb-4">
+                                <input type="text" name="auction_address" class="form-control input-lg" placeholder="Address e.g Cuba"  />
+                            </div>
+                        </div>
+<!--                        Start date of auction-->
+                     <div class="form-group">
+                            <input type="text" name="auction_startDate" class="form-control" placeholder="Start Date in YY/MM/DD hh:mm:ss format" >
+                        </div>
+  <!--                        Submit button-->
+                        <div class="form-group">
+                            <button type="submit" name="btnSubmit" class="form-control btn btn-success" value="Sign up" id="SignUpBtn" >Upload Auction</button>
+                        </div>
+                    </div>
+                    <?php } elseif ($view->uploadType == 'Lot')
+                    { ?>
+
+                    <!--                    upload Lot-->
+                    <div class="panel-body mt-3" >
+                        <!--                        -->
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 mb-4">
+                                <input type="text" name="item_title"  class="form-control input-lg" placeholder="Item Title"  />
+                            </div>
+                            <select class="form-select col-xs-6 col-md-5 mb-4" aria-label="Default select example" name="posting_user">
+                                <option selected>User type</option>
+                                <option value="0">User</option>
+                                <option value="1">Admin</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="item_desc" class="form-control" placeholder="Item Description" >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="start_bid_amount" class="form-control" placeholder="Starting Bid amount" >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="typical_price" class="form-control" placeholder="Estimated Price" >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="date_created" class="form-control" placeholder="Date in YY/MM/DD hh:mm:ss format" >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="bid_end_date" class="form-control" placeholder="Date in YY/MM/DD hh:mm:ss format" >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="auctionID" class="form-control" placeholder="Auction No" >
+                        </div>
+
+                      <!--                        Submit button-->
+                        <div class="form-group">
+                            <button type="submit" name="btnSubmit" class="form-control btn btn-success" value="Sign up" id="SignUpBtn" >Upload Lot</button>
+                        </div>
+                    </div>
+                    <?php }?>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<?php require('template/footer.phtml') ; ?>
+
+
+
+
+

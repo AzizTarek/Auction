@@ -1,0 +1,14 @@
+body{
+    background: linear-gradient(to bottom, #ffffff 0%, #66ccff 100%);
+}
+#SignInBtn{
+    background-color: #2A8DF5;
+}
+
+#SignInPanel{
+    padding-top: 100px;
+}
+
+footer{
+    margin-top: 500px;
+}

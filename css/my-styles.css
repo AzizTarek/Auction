@@ -1,0 +1,103 @@
+a:active {
+    color: gold;
+}
+body{
+    background: linear-gradient(to top, #ffffff 0%, #ccccff 500%);
+}
+.navbar{
+    margin-bottom: 50px;
+}
+/*Radio buttons used for choosing during search*/
+#btnradio1:hover , #btnradio2:hover{
+
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
+}
+/*Header of the bidding form*/
+#BidReminder{
+    background-color: aliceblue;
+}
+/*Live text */
+#LiveTag{
+    float: left;
+}
+
+img{
+    width: 100%;
+}
+
+#SignInBrand{
+    width: 50px;
+
+}
+li{
+    margin-left: 20px;
+}
+#lot_no{
+    color: cornflowerblue;
+}
+#search{
+   width:32px;
+    height:32px;
+}
+/*error at the top of the sign in/up page*/
+.error {
+    background: #F2DEDE;
+    color: #A94442;
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+/*search error*/
+.errorNav{
+    background: #F2DEDE;
+    color: #A94442;
+    padding: 5px;
+    width: 20%;
+}
+/*success at the top of the sign in/up page*/
+.success {
+    background: #D4EDDA;
+    color: #40754C;
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+/*Log out button of bids page*/
+#logOutButton{
+     float: right;
+    margin-right: 20px;
+}
+/* Header of each page*/
+#header{
+    text-align: center;
+    padding-top: 100px; ;
+}
+/*footer*/
+footer {
+    margin-top: 230px;
+    padding: 15px 15px ;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+}
+
+/*For the table example */
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* End of Table example*/
