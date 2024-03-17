@@ -1,2 +1,2 @@
-# Auction
-An auction website that i made for the module Client Sever Systems of my course (Dec 2020)
+# Dynamic Live Auction Platform
+Engineered a dynamic live auction website, utilizing PHP, Bootstrap, Javascript, AJAX, HTML, and CSS. This platform revolutionizes online auctions by enabling real-time bidding, live item management, and dynamic price adjustments. The user-friendly interface empowers sellers and bidders alike to actively participate in a dynamic and engaging virtual marketplace. (Dec 2020)
